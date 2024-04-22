@@ -1,6 +1,7 @@
 package turniplabs.halplibe.helper;
 
 import net.minecraft.client.Minecraft;
+import org.jetbrains.annotations.ApiStatus;
 import turniplabs.halplibe.HalpLibe;
 import turniplabs.halplibe.util.DirectoryManager;
 
@@ -36,32 +37,33 @@ abstract public class SoundHelper {
     }
 
     /**
-     * @deprecated Function is being moved to {@link Client#addCaveMusic(String, String)}
+     * Place mod sounds in the <i>assets/modId/cavemusic/</i> directory for them to be seen.
      */
-    @Deprecated
     public static void addCaveMusic(String MOD_ID, String soundSource){
+        if (!HalpLibe.isClient) return;
         Client.addCaveMusic(MOD_ID, soundSource);
-    }
-    /**
-     * @deprecated Function is being moved to {@link Client#addStreaming(String, String)}
-     */
-    @Deprecated
-    public static void addStreaming(String MOD_ID, String soundSource){
-        Client.addStreaming(MOD_ID, soundSource);
-    }
-    /**
-     * @deprecated Function is being moved to {@link Client#addMusic(String, String)}
-     */
-    @Deprecated
-    public static void addMusic(String MOD_ID, String soundSource){
-        Client.addMusic(MOD_ID, soundSource);
     }
 
     /**
-     * @deprecated Function is being moved to {@link Client#addSound(String, String)}
+     * Place mod sounds in the <i>assets/modId/streaming/</i> directory for them to be seen.
      */
-    @Deprecated
+    public static void addStreaming(String MOD_ID, String soundSource){
+        if (!HalpLibe.isClient) return;
+        Client.addStreaming(MOD_ID, soundSource);
+    }
+
+    /**
+     * Place mod sounds in the <i>assets/modId/music/</i> directory for them to be seen.
+     */
+    public static void addMusic(String MOD_ID, String soundSource){
+        if (!HalpLibe.isClient) return;
+        Client.addMusic(MOD_ID, soundSource);
+    }
+    /**
+     * Place mod sounds in the <i>assets/modId/sound/</i> directory for them to be seen.
+     */
     public static void addSound(String MOD_ID, String soundSource){
+        if (!HalpLibe.isClient) return;
         Client.addSound(MOD_ID, soundSource);
     }
     private static String extract(String jarFilePath, String destination, String soundSource){
@@ -123,6 +125,7 @@ abstract public class SoundHelper {
         /**
          * Place mod sounds in the <i>assets/modId/cavemusic/</i> directory for them to be seen.
          */
+        @ApiStatus.Internal
         public static void addCaveMusic(String MOD_ID, String soundSource){
             if (appDirectory == null) {
                 HalpLibe.LOGGER.warn("Resource directory cannot be found, function is only intended to be ran on the Client!");
@@ -138,6 +141,7 @@ abstract public class SoundHelper {
         /**
          * Place mod sounds in the <i>assets/modId/streaming/</i> directory for them to be seen.
          */
+        @ApiStatus.Internal
         public static void addStreaming(String MOD_ID, String soundSource){
             if (appDirectory == null) {
                 HalpLibe.LOGGER.warn("Resource directory cannot be found, function is only intended to be ran on the Client!");
@@ -153,6 +157,7 @@ abstract public class SoundHelper {
         /**
          * Place mod sounds in the <i>assets/modId/music/</i> directory for them to be seen.
          */
+        @ApiStatus.Internal
         public static void addMusic(String MOD_ID, String soundSource){
             if (appDirectory == null) {
                 HalpLibe.LOGGER.warn("Resource directory cannot be found, function is only intended to be ran on the Client!");
@@ -168,6 +173,7 @@ abstract public class SoundHelper {
         /**
          * Place mod sounds in the <i>assets/modId/sound/</i> directory for them to be seen.
          */
+        @ApiStatus.Internal
         public static void addSound(String MOD_ID, String soundSource){
             if (appDirectory == null) {
                 HalpLibe.LOGGER.warn("Resource directory cannot be found, function is only intended to be ran on the Client!");

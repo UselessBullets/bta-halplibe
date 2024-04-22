@@ -19,11 +19,27 @@ abstract public class CommandHelper {
     private static final List<Function<AtomicReference<Minecraft>, Command>> clientCommands = new ArrayList<>();
     @ApiStatus.Internal // used in CommandsServerMixin
     private static final List<Function<AtomicReference<MinecraftServer>, Command>> serverCommands = new ArrayList<>();
-    @Deprecated
+
+    /**
+     * @param command Command to be added to the commands list
+     */
     public static void createCommand(Command command) {
         Core.createCommand(command);
     }
 
+    /**
+     * @param clientCommand Function that returns a client command when supplied with an AtomicReference<Minecraft>
+     */
+    public static void createClientCommand(Function<AtomicReference<Minecraft>, Command> clientCommand){
+        Client.createCommand(clientCommand);
+    }
+    /**
+     * @param serverCommand Function that returns a server command when supplied with an AtomicReference<Minecraft>
+     */
+    @SuppressWarnings("unused") // API function
+    public static void createServerCommand(Function<AtomicReference<MinecraftServer>, Command> serverCommand){
+        Server.createCommand(serverCommand);
+    }
     /**
      * Functions to call from the client or server
      */
@@ -32,6 +48,7 @@ abstract public class CommandHelper {
         /**
          * @param command Command to be added to the commands list
          */
+        @ApiStatus.Internal
         @SuppressWarnings("unused") // API function
         public static void createCommand(Command command) {
             coreCommands.add(command);
@@ -49,6 +66,7 @@ abstract public class CommandHelper {
         /**
          * @param command Command to be added to the client commands list
          */
+        @ApiStatus.Internal
         @SuppressWarnings("unused") // API function
         public static void createCommand(Command command) {
             if (!HalpLibe.isClient) return;
@@ -61,6 +79,7 @@ abstract public class CommandHelper {
         /**
          * @param clientCommand Function that returns a client command when supplied with an AtomicReference<Minecraft>
          */
+        @ApiStatus.Internal
         @SuppressWarnings("unused") // API function
         public static void createCommand(Function<AtomicReference<Minecraft>, Command> clientCommand){
             clientCommands.add(clientCommand);
@@ -78,6 +97,7 @@ abstract public class CommandHelper {
         /**
          * @param command Command to be added to the server commands list
          */
+        @ApiStatus.Internal
         @SuppressWarnings("unused") // API function
         public static void createCommand(Command command) {
             if (HalpLibe.isClient) return;
@@ -90,6 +110,7 @@ abstract public class CommandHelper {
         /**
          * @param serverCommand Function that returns a server command when supplied with an AtomicReference<Minecraft>
          */
+        @ApiStatus.Internal
         @SuppressWarnings("unused") // API function
         public static void createCommand(Function<AtomicReference<MinecraftServer>, Command> serverCommand){
             serverCommands.add(serverCommand);
