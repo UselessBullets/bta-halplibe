@@ -22,7 +22,7 @@
       "turniplabs.halplibe.HalpLibe"
     ],
     "preLaunch": [
-      "turniplabs.halplibe.HalpLibe"
+      "turniplabs.halplibe.HalplibePreStartup"
     ]
   },
   "mixins": [

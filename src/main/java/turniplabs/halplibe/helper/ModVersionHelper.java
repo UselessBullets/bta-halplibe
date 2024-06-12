@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ModVersionHelper {
-    protected static boolean isDev = FabricLoader.getInstance().isDevelopmentEnvironment();
-    protected static List<ModInfo> localMods = new ArrayList<>();
-    protected static List<ModInfo> serverMods = null;
+    static final boolean isDev = FabricLoader.getInstance().isDevelopmentEnvironment();
+    static final List<ModInfo> localMods = new ArrayList<>();
+    static List<ModInfo> serverMods = null;
     static {
         for (ModContainer modContainer: FabricLoader.getInstance().getAllMods()) {
             if (modContainer.getMetadata().getType().equals("fabric") && !modContainer.getMetadata().getId().equals("fabricloader")){
@@ -119,14 +119,14 @@ public final class ModVersionHelper {
                 return null;
         }
     }
-    protected static void setServerModlist(List<ModInfo> modInfos){
+    static void setServerModlist(List<ModInfo> modInfos){
         serverMods = modInfos;
         if (isDev){
             printModList();
         }
 
     }
-    protected static void printModList(){
+    private static void printModList(){
         HalpLibe.LOGGER.info("Server Mod List");
         if (getServerModlist() != null){
             for (ModInfo info: getServerModlist()) {
