@@ -23,6 +23,9 @@
     ],
     "preLaunch": [
       "turniplabs.halplibe.HalplibePreStartup"
+    ],
+    "halplibe:event_bus": [
+      "turniplabs.halplibe.HalplibeEventMethods"
     ]
   },
   "mixins": [

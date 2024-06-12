@@ -1,10 +1,10 @@
-package turniplabs.halplibe.events.startup;
+package turniplabs.halplibe.events;
 
 import org.jetbrains.annotations.NotNull;
-import turniplabs.halplibe.event.EventContainer;
 import turniplabs.halplibe.event.Event;
+import turniplabs.halplibe.event.EventContainer;
 
-public class RegisterBlocksEvent extends Event {
+public class RegisterEntityEvent extends Event {
     private static final EventContainer eventContainer = new EventContainer();
     @NotNull
     public EventContainer getEvents() {
