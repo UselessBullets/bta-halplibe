@@ -8,5 +8,4 @@ public final class Entrypoints {
     public static final String AFTER_GAME_START = "afterGameStart";
 
     public static final String EVENT_BUS = "halplibe:event_bus";
-    public static final String EVENT_REGISTER = "halplibe:event_register";
 }
