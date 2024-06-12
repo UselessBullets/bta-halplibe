@@ -15,12 +15,8 @@ import java.util.List;
 @Mixin(value = Commands.class, remap = false)
 public class CommandsCoreMixin {
     @Shadow public static List<Command> commands;
-    @SuppressWarnings("unchecked")
     @Inject(method = "initCommands()V", at = @At("TAIL"))
-    private static void addCoreCommands(CallbackInfo ci) throws NoSuchFieldException, IllegalAccessException {
-        Field field = CommandHelper.class.getDeclaredField("coreCommands");
-        field.setAccessible(true);
-        commands.addAll((List<Command>) field.get(CommandHelper.class));
-        field.setAccessible(false);
+    private static void addCoreCommands(CallbackInfo ci) {
+        commands.addAll(CommandHelper.coreCommands);
     }
 }

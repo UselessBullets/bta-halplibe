@@ -14,11 +14,11 @@ import java.util.function.Function;
 
 public final class CommandHelper {
     @ApiStatus.Internal // used in CommandsCoreMixin
-    private static final List<Command> coreCommands = new ArrayList<>();
+    public static final List<Command> coreCommands = new ArrayList<>();
     @ApiStatus.Internal // used in CommandsClientMixin
-    private static final List<Function<AtomicReference<Minecraft>, Command>> clientCommands = new ArrayList<>();
+    public static final List<Function<AtomicReference<Minecraft>, Command>> clientCommands = new ArrayList<>();
     @ApiStatus.Internal // used in CommandsServerMixin
-    private static final List<Function<AtomicReference<MinecraftServer>, Command>> serverCommands = new ArrayList<>();
+    public static final List<Function<AtomicReference<MinecraftServer>, Command>> serverCommands = new ArrayList<>();
 
     /**
      * @param command Command to be added to the commands list

@@ -25,6 +25,19 @@ public class HalpLibe implements ModInitializer {
     public static boolean exportRecipes;
     static boolean compatibilityMode;
     static TomlConfigHandler CONFIG;
+    static {
+        Toml toml = new Toml();
+        toml.addCategory("Experimental");
+        toml.addEntry("Experimental.CompatibilityMode", "Attempt allowing compatibility with older halplibe versions", true);
+        toml.addCategory("Debug");
+        toml.addEntry("Debug.ExportRecipes", "Writes all the loaded game recipes to dumpRecipes after startup", false);
+
+
+        HalpLibe.CONFIG = new TomlConfigHandler(HalpLibe.MOD_ID, toml);
+
+        HalpLibe.exportRecipes = HalpLibe.CONFIG.getBoolean("Debug.ExportRecipes");
+        HalpLibe.compatibilityMode = HalpLibe.CONFIG.getBoolean("Experimental.CompatibilityMode");
+    }
 
     public static final AchievementPage VANILLA_ACHIEVEMENTS = new VanillaAchievementsPage();
     public static HashMap<String, Integer> itemKeyToIdMap = new HashMap<>();

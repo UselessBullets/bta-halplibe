@@ -12,6 +12,7 @@ import turniplabs.halplibe.HalpLibe;
 import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
+import turniplabs.halplibe.util.entrypoints.Entrypoints;
 
 @Mixin(value = MinecraftServer.class, remap = false)
 public class MinecraftServerMixin {
@@ -19,19 +20,19 @@ public class MinecraftServerMixin {
 
     @Inject(method = "startServer", at = @At(value = "INVOKE",target = "Lnet/minecraft/core/data/DataLoader;loadRecipesFromFile(Ljava/lang/String;)V", ordinal = 3, shift = At.Shift.AFTER))
     public void recipeEntrypoint(CallbackInfoReturnable<Boolean> cir){
-        FabricLoader.getInstance().getEntrypoints("recipesReady", RecipeEntrypoint.class).forEach(RecipeEntrypoint::initNamespaces);
-        FabricLoader.getInstance().getEntrypoints("recipesReady", RecipeEntrypoint.class).forEach(RecipeEntrypoint::onRecipesReady);
+        FabricLoader.getInstance().getEntrypoints(Entrypoints.RECIPES_READY, RecipeEntrypoint.class).forEach(RecipeEntrypoint::initNamespaces);
+        FabricLoader.getInstance().getEntrypoints(Entrypoints.RECIPES_READY, RecipeEntrypoint.class).forEach(RecipeEntrypoint::onRecipesReady);
     }
     @Inject(method = "startServer", at = @At("HEAD"))
     public void beforeGameStartEntrypoint(CallbackInfoReturnable<Boolean> cir){
         instance = (MinecraftServer)(Object)this;
         Global.isServer = true;
-        FabricLoader.getInstance().getEntrypoints("beforeGameStart", GameStartEntrypoint.class).forEach(GameStartEntrypoint::beforeGameStart);
+        FabricLoader.getInstance().getEntrypoints(Entrypoints.BEFORE_GAME_START, GameStartEntrypoint.class).forEach(GameStartEntrypoint::beforeGameStart);
     }
 
     @Inject(method = "startServer", at = @At("TAIL"))
     public void afterGameStartEntrypoint(CallbackInfoReturnable<Boolean> cir){
-        FabricLoader.getInstance().getEntrypoints("afterGameStart", GameStartEntrypoint.class).forEach(GameStartEntrypoint::afterGameStart);
+        FabricLoader.getInstance().getEntrypoints(Entrypoints.AFTER_GAME_START, GameStartEntrypoint.class).forEach(GameStartEntrypoint::afterGameStart);
         if (HalpLibe.exportRecipes){
             RecipeBuilder.exportRecipes();
         }

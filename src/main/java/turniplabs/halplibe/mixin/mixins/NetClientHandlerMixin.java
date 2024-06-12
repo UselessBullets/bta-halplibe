@@ -9,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import turniplabs.halplibe.util.RecipeEntrypoint;
+import turniplabs.halplibe.util.entrypoints.Entrypoints;
 
 @Mixin(value = NetClientHandler.class,remap = false)
 public abstract class NetClientHandlerMixin extends NetHandler {
 
     @Inject(method = "handleLogin", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/crafting/legacy/CraftingManager;reset()V", shift = At.Shift.BEFORE))
     public void handleLogin(Packet1Login packet1login, CallbackInfo ci) {
-        FabricLoader.getInstance().getEntrypoints("recipesReady", RecipeEntrypoint.class).forEach(RecipeEntrypoint::initNamespaces);
+        FabricLoader.getInstance().getEntrypoints(Entrypoints.RECIPES_READY, RecipeEntrypoint.class).forEach(RecipeEntrypoint::initNamespaces);
     }
 }

@@ -22,13 +22,8 @@ public class CommandsServerMixin {
     @Shadow
     public static List<Command> commands;
     @Inject(method = "initServerCommands(Lnet/minecraft/server/MinecraftServer;)V", at = @At("TAIL"))
-    private static void addServerCommands(MinecraftServer server, CallbackInfo ci) throws NoSuchFieldException, IllegalAccessException {
-        Field field = CommandHelper.class.getDeclaredField("serverCommands");
-        field.setAccessible(true);
-        @SuppressWarnings("unchecked")
-        List<Function<AtomicReference<MinecraftServer>, Command>> serverCommands = (List<Function<AtomicReference<MinecraftServer>, Command>>) field.get(CommandHelper.class);
-        field.setAccessible(false);
-        for (Function<AtomicReference<MinecraftServer>, Command> f : serverCommands){
+    private static void addServerCommands(MinecraftServer server, CallbackInfo ci) {
+        for (Function<AtomicReference<MinecraftServer>, Command> f : CommandHelper.serverCommands){
             commands.add(f.apply(new AtomicReference<>(server)));
         }
     }
