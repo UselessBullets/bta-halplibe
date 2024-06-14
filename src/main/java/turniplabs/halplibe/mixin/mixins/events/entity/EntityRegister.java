@@ -1,11 +1,11 @@
-package turniplabs.halplibe.mixin.mixins.events;
+package turniplabs.halplibe.mixin.mixins.events.entity;
 
 import net.minecraft.core.entity.EntityDispatcher;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import turniplabs.halplibe.events.RegisterEntityEvent;
+import turniplabs.halplibe.events.entity.RegisterEntityEvent;
 
 @Mixin(value = EntityDispatcher.class, remap = false)
 public class EntityRegister {

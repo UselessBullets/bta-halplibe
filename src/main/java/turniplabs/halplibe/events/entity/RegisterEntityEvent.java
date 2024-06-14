@@ -1,4 +1,4 @@
-package turniplabs.halplibe.events;
+package turniplabs.halplibe.events.entity;
 
 import org.jetbrains.annotations.NotNull;
 import turniplabs.halplibe.event.Event;

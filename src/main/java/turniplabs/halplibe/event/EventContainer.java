@@ -13,8 +13,12 @@ import java.util.List;
 import java.util.Map;
 @ApiStatus.Internal
 public final class EventContainer {
+	public static int totalContainers = 0;
 	@NotNull
 	private final Map<Priority, List<EventEntry>> priorityEventCallbackMap = new HashMap<>();
+	public EventContainer(){
+		totalContainers++;
+	}
 	public void addEvent(
 		@NotNull final Object listener,
 		@NotNull final Method event,
