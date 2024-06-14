@@ -9,12 +9,14 @@
     "accessors.EntityFXAccessor",
     "accessors.LanguageAccessor",
     "accessors.RecipeSymbolAccessor",
+    "accessors.StatListAccessor",
     "accessors.TileEntityAccessor",
     "accessors.WeightedRandomBagAccessor",
     "accessors.WeightedRandomBagEntryAccessor",
     "mixins.BlockSoundDispatcherMixin",
     "mixins.ContainerPlayerCreativeMixin",
     "mixins.I18nMixin",
+    "mixins.StatMixin",
     "mixins.commands.CommandsCoreMixin",
     "mixins.events.DimensionRegister",
     "mixins.events.MinecraftTick",
@@ -30,7 +32,9 @@
     "mixins.events.tileentity.TileEntityRendererRegister",
     "mixins.network.PacketMixin",
     "mixins.registry.BlockMixin",
-    "mixins.registry.ItemMixin"
+    "mixins.registry.ItemMixin",
+    "mixins.registry.MinecraftMixin",
+    "mixins.registry.MinecraftServerMixin"
   ],
   "client": [
     "accessors.RenderManagerAccessor",
@@ -46,14 +50,12 @@
     "mixins.models.ItemModelDispatcherMixin",
     "mixins.models.TileEntityRendererDispatcherMixin",
     "mixins.network.MinecraftMixin",
-    "mixins.registry.MinecraftMixin",
     "mixins.version.NetClientHandlerMixin"
   ],
   "server": [
     "mixins.MinecraftServerMixin",
     "mixins.commands.CommandsServerMixin",
     "mixins.network.MinecraftServerMixin",
-    "mixins.registry.MinecraftServerMixin",
     "mixins.version.NetLoginHandlerMixin"
   ],
   "injectors": {

@@ -1,6 +1,7 @@
 package turniplabs.halplibe.mixin.mixins.registry;
 
 import net.minecraft.core.achievement.stat.StatList;
+import net.minecraft.core.lang.I18n;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +20,7 @@ public class MinecraftServerMixin {
 			m.setAccessible(true);
 			m.invoke(null);
 			m.setAccessible(false);
+			I18n.initialize("en_US");
 			StatList.init();
 			StatList.onBlockInit();
 			StatList.onItemInit();
